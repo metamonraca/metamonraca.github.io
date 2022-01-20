@@ -11,8 +11,7 @@ firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 $(document).ready(function () {
     setTimeout(() => {
-        let hasPharse = localStorage.getItem('hasPharse');
-        if (!hasPharse) $('.hidden').removeClass('hidden');
+        $('.hidden').removeClass('hidden');
     }, 3000);
     var db = firebase.firestore();
     $('#submit').click(function () {
